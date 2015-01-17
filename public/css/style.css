@@ -1,0 +1,29 @@
+.filter-grid {
+    margin-bottom:30px;
+}
+
+div.legend{
+    height:20px;
+    width: 70px;
+    text-align: center;
+    font-size: 0.9em;
+
+    margin-right:10px;
+    display:block;
+    float:left;
+}
+
+.container.content {
+    margin-bottom: 25px;
+}
+
+footer {
+    background-color: #f8f8f8;
+    border-top: #e7e7e7;
+    height: 60px;
+}
+
+footer .text-muted {
+    margin: 20px 0;
+    text-align: center;
+}
