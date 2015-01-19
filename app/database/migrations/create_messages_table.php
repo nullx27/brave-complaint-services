@@ -12,7 +12,7 @@ class CreateMessageTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('message', function($table){
+		Schema::create('messages', function($table){
 			$table->increments('id');
 			$table->integer('complaint_id')->unsigned();
 			$table->integer('user_id')->unsigned();

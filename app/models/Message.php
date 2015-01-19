@@ -2,7 +2,7 @@
 
 class Message extends Eloquent{
 
-    protected $table = 'message';
+    protected $table = 'messages';
     protected $guarded = array('id');
 
 }
