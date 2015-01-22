@@ -1,7 +1,9 @@
 var brave_comlaint;
 
 brave_comlaint = {
+
     init: function(){
+
         $('#complaints_overview').tablecloth({
             theme: "default",
             bordered: false,
@@ -70,6 +72,7 @@ brave_comlaint = {
     update_submit_button: function(){
         $('.submit-btn').text('Submit as ' + $(this).text());
         $('.complaint_submitted').val($(this).attr('data-type'));
+        $('.submit-btn').dropdown("toggle");
 
         return false;
     },
@@ -77,8 +80,7 @@ brave_comlaint = {
     submit_form: function(){
         $('.complaint_form').submit();
     }
-
-
+    
 }
 
 jQuery( 'document' ).ready(function(){
