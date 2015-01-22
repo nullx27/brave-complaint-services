@@ -82,7 +82,7 @@
 
 
     <div class="form-group">
-        <?php echo Form::label('complaint_outcome', 'Would you like for Internal Affairs to investigate further?');?>
+        <?php echo Form::label('complaint_investigate', 'Would you like for Internal Affairs to investigate further?');?>
         <div class="radio">
 
             <label>

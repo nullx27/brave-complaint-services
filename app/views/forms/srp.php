@@ -1,4 +1,4 @@
-<div class="jumbotron">
+    <div class="jumbotron">
     <h2>Ship Replacement Program Complaint</h2>
     <p>
         Sometimes things get messed up when it comes to dealing with alliance SRP.
@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        <?php echo Form::label('complaint_outcome', 'Would you like for Internal Affairs to investigate further?');?>
+        <?php echo Form::label('complaint_investigate', 'Would you like for Internal Affairs to investigate further?');?>
         <div class="radio">
 
             <label>
