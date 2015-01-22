@@ -35,6 +35,7 @@ class ApiUser extends Eloquent implements UserInterface {
                                 'status',
                                 'permission',
                                 'user_permissions');
+    private $token;
 
     /**
      * Get the unique identifier for the user.
@@ -79,7 +80,7 @@ class ApiUser extends Eloquent implements UserInterface {
 
     public function canReview($what = null){
         if(is_null($what))
-            return $this->hasPermission('complaint.test.review');
+            return $this->hasPermission(Config::get('braveapi.application-permission-review'));
         else
             return $this->hasPermission('complaint.test.review.'.$what);
     }

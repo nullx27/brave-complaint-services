@@ -72,7 +72,6 @@ class ComplaintController extends BaseController {
         ));
     }
 
-
     public function addCommentAction(){
 
         Message::create(array(

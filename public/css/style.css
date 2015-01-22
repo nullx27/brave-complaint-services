@@ -2,17 +2,6 @@
     margin-bottom:30px;
 }
 
-div.legend{
-    height:20px;
-    width: 70px;
-    text-align: center;
-    font-size: 0.9em;
-
-    margin-right:10px;
-    display:block;
-    float:left;
-}
-
 .container.content {
     margin-bottom: 25px;
 }

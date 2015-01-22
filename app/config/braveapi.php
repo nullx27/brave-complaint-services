@@ -11,10 +11,11 @@ return array(
     |
     */
 
-    'application-endpoint' => '',   // must be HTTPS
+    'application-endpoint' => '',   // CORE HTTPS API endpoint
     'application-permission-namespace' => '', // permission namespace for your application in core
-    'application-identifier' => '', // from core auth
-    'local-private-key' => '',      // from local key generation
+    'application-permission-review' => '', // review permission, e.g. complaint.test.review
+    'application-identifier' => '', // Application ID from CORE
+    'local-private-key' => '',     // from local key generation
     'local-public-key'  => '',      // from local key generation, not used
     'remote-public-key' => '',      // form core auth
 );

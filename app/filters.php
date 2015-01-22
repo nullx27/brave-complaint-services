@@ -36,12 +36,16 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) {
+		return Redirect::guest('login');
+	}
+
 });
 
 Route::filter('edit', function()
 {
-	if (!Auth::check() or Auth::user()->permission !== '1') return Redirect::route('home');
+	if (!Auth::check() or Auth::user()->permission !== '1')
+		return Redirect::route('home');
 });
 
 Route::filter('auth.basic', function()

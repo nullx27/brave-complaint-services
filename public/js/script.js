@@ -1,6 +1,6 @@
-var brave_comlaint;
+var brave_complaint;
 
-brave_comlaint = {
+brave_complaint = {
     form_error: false,
     init: function(){
 
@@ -35,7 +35,7 @@ brave_comlaint = {
             type: "POST",
             url: '/complaint/update',
             data: {
-                id: brave_comlaint._get_complaint_id(),
+                id: brave_complaint._get_complaint_id(),
                 status: $(this).attr('name')
             }
         })
@@ -71,9 +71,10 @@ brave_comlaint = {
     },
 
     update_submit_button: function(){
-        $('.submit-btn').text('Submit as ' + $(this).text());
+        var submit = $('.submit-btn');
+        submit.text('Submit as ' + $(this).text());
         $('.complaint_submitted').val($(this).attr('data-type'));
-        $('.submit-btn').dropdown("toggle");
+        submit.dropdown("toggle");
 
         //Show HR investigation notice
         if($(this).text().trim() == 'Anonymous'){
@@ -102,19 +103,19 @@ brave_comlaint = {
         });
 
         if(error){
-            if(!brave_comlaint.form_error){
+            if(!brave_complaint.form_error){
                 $('<div>').addClass('alert alert-danger').text('Please fill out all required forms!')
                     .insertAfter($('.jumbotron'));
             }
 
-            brave_comlaint.form_error = error;
+            brave_complaint.form_error = error;
 
             $("html, body").animate({ scrollTop: 0 }, "fast");
             return false;
         }
     }
-}
+};
 
 jQuery( 'document' ).ready(function(){
-    brave_comlaint.init();
+    brave_complaint.init();
 });

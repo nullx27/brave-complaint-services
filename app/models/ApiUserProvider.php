@@ -47,7 +47,6 @@ class ApiUserProvider implements UserProviderInterface {
             var_dump($credentials);
             echo "\n\n";
             exit;
-            return null;
         }
     }
 
