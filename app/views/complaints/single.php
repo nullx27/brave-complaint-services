@@ -3,7 +3,7 @@
     <div class="btn-group pull-right">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"<span id="status-button"><?php echo BraveComplaintHelper::$status[$complaint->status]; ?></span> <span class="caret"></span>
             </button>
-        <?php if(Auth::user()->canReview()): ?>
+        <?php if(Auth::user()->isReviewer()): ?>
             <ul class="dropdown-menu" role="menu">
                 <?php foreach(BraveComplaintHelper::$status as $key => $val): ?>
                     <li><a class="update-status" name="<?php echo $key; ?>" href=""><?php echo $val; ?></a></li>

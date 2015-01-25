@@ -22,10 +22,12 @@
         <div class="col-md-2">
             <h5>Type</h5>
             <select class="form-control" name="filter_type">
-                <option value="all" <?php if(isset($selected['status']) && $selected['status'] == 'all') echo "selected"; ?>>All</option>
+                <?php if(Auth::user()->canReview('all')): ?>
+                    <option value="all" <?php if(isset($selected['status']) && $selected['status'] == 'all') echo "selected"; ?>>All</option>
+                <?php endif; ?>
 
-                <?php foreach(BraveComplaintHelper::$types as $key => $val): ?>
-                    <option value="<?php echo $key;?>" <?php if(isset($selected['type']) && $selected['type'] == $key) echo "selected"; ?>><?php echo $val;?></option>
+                <?php foreach($types as $key => $val): ?>
+                    <option value="<?php echo $key;?>" <?php if(isset($selected['status']) && $selected['status'] == $key) echo "selected"; ?>><?php echo $val['name'];?></option>
                 <?php endforeach; ?>
             </select>
         </div>

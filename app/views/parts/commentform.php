@@ -18,7 +18,7 @@
                     ); ?>
                 </div>
 
-                <?php if(Auth::user()->canReview()): ?>
+                <?php if(Auth::user()->isReviewer()): ?>
                     <div class="form-group">
                         <?php echo Form::label('complaint_comment_private', 'Set Private:');?>
                         <?php echo Form::checkbox('complaint_comment_private', 'yes'); ?>

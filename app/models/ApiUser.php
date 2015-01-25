@@ -37,6 +37,7 @@ class ApiUser extends Eloquent implements UserInterface {
                                 'user_permissions');
     private $token;
 
+
     /**
      * Get the unique identifier for the user.
      *
@@ -68,8 +69,8 @@ class ApiUser extends Eloquent implements UserInterface {
     }
 
 
-    public function hasPermission($permission){
-
+    public function hasPermission($permission)
+    {
         if(is_null($this->_permissions)){
             $this->_permissions = unserialize($this->user_permissions);
         }
@@ -77,16 +78,38 @@ class ApiUser extends Eloquent implements UserInterface {
         return in_array($permission, $this->_permissions);
     }
 
+    public function isReviewer(){
+        return $this->hasPermission(Config::get('braveapi.application-permission-review'));
+    }
 
     public function canReview($what = null){
         if(is_null($what))
-            return $this->hasPermission(Config::get('braveapi.application-permission-review'));
+        {
+            return $this->hasPermission(Config::get('braveapi.permission-review-all'));
+        }
         else
-            return $this->hasPermission('complaint.test.review.'.$what);
+        {
+            if(is_null($this->_permissions)){
+                $this->_permissions = unserialize($this->user_permissions);
+            }
+
+            // if user can review all complaints don't bother to check for specifics
+            if(in_array(Config::get('braveapi.permission-review-all'), $this->_permissions)){
+                return true;
+            }
+
+            $perm = Types::getPermission($what);
+            return in_array($perm, $this->_permissions);
+        }
+
     }
 
 
     public function scopeIdByName($query, $name){
         return $query->select('id')->where('character_name', 'LIKE', "%{$name}%");
+    }
+
+    public function getPermissions(){
+        return $this->_permissions;
     }
 }

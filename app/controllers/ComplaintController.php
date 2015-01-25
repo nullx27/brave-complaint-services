@@ -6,13 +6,18 @@ class ComplaintController extends BaseController {
 
         $complaint = Complaint::find($id);
 
-        if(!$complaint || (!Auth::user()->canReview() && $complaint->user_id != Auth::user()->id)){
+        if(!$complaint ||
+            (!Auth::user()->isReviewer() ||
+            !Auth::user()->canReview($complaint->type)) ||
+            $complaint->user_id != Auth::user()->id
+
+        ){
             Session::flash('flash_error', "Complaint #{$id} not found");
             return Redirect::to('error');
         }
 
         //Don't fetch private comments
-        if(Auth::user()->canReview()){
+        if(Auth::user()->isReviewer()){
             $comments = Message::where('complaint_id', '=', $id)->get();
         } else {
             $comments = Message::where('complaint_id', '=', $id)->where('public', '=', true)->get();
@@ -30,7 +35,7 @@ class ComplaintController extends BaseController {
         if(!in_array($complaint->status, $closed_status)){
             $view =$view->nest('comment_form', 'parts/commentform');
         } else {
-            if(Auth::user()->canReview()){
+            if(Auth::user()->isReviewer()){
                 $view =$view->nest('comment_form', 'parts/commentform');
             } else {
                 $view =$view->nest('comment_form', 'parts/comments_closed');
@@ -44,7 +49,7 @@ class ComplaintController extends BaseController {
 
         $complaint = Complaint::find(Input::get('id'));
 
-        if(!$complaint || (!Auth::user()->canReview() && $complaint->user_id != Auth::user()->id)){
+        if(!$complaint || (!Auth::user()->isReviewer() && $complaint->user_id != Auth::user()->id)){
             Session::flash('flash_error', "Complaint #" . Input::get('id') . " not found");
             return Redirect::to('error');
         }

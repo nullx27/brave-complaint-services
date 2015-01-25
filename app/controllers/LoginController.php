@@ -32,7 +32,6 @@ class LoginController extends BaseController {
                 ->with('flash_error', 'Login Failed, Please Try Again');
         }
 
-
         return Redirect::to($result->location);
     }
 

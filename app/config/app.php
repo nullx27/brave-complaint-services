@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretHere',
+	'key' => 'ObXTXfVxIfKFew5TI7g1ilD5r9IriEAu',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'TypeServiceProvider'
 
 	),
 
@@ -188,7 +189,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-
+		'Types'				=> 'App\Models\TypesFacade'
 	),
 
 );

@@ -16,7 +16,7 @@
                 </li>
                 <?php if(!Auth::guest()): ?>
                 <li>
-                    <?php if(Auth::user()->canReview()): ?>
+                    <?php if(Auth::user()->isReviewer()): ?>
                         <a href="<?=URL::route('overview')?>">Complaints</a>
                     <?php else: ?>
                         <a href="<?=URL::route('overview')?>">My Complaints</a>
