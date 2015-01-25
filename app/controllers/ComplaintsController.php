@@ -72,4 +72,32 @@ class ComplaintsController extends BaseController {
 
         return $view;
     }
+
+    public function filterOverviewByUserHash($hash)
+    {
+        if(!Auth::user()->isReviewer(true))
+        {
+            return Redirect::route('error')->with('flash_error', 'Not enough rights!');
+        }
+
+        $view = $this->_defaultView()
+            ->nest('content', 'complaints/overview');
+
+        $id = Hashids::decode($hash);
+        //find all anonymous complaints belonging to this user
+        $complaints = Complaint::where('user_id', $id)->where('anonymous', true)->get();
+
+        if(!$complaints)
+        {
+            return Redirect::route('error')->with('flash_error', 'No complaints found!');
+        }
+
+        $permissions = Auth::user()->getPermissions();
+        $types = Types::getTypesFromPermission($permissions);
+        View::share('types', $types);
+        View::share('complaints', $complaints);
+
+        return $view;
+
+    }
 }

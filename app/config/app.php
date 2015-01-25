@@ -121,7 +121,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'App\Models\TypeServiceProvider'
+		'App\Models\TypeServiceProvider',
+		'Alexsoft\LaravelHashids\LaravelHashidsServiceProvider'
 
 	),
 
@@ -189,7 +190,8 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Types'				=> 'App\Models\TypesFacade'
+		'Types'				=> 'App\Models\TypesFacade',
+		'Hashids' 			=> 'Alexsoft\LaravelHashids\Facades\Hashids'
 	),
 
 );

@@ -38,7 +38,9 @@ Route::group(array('before' => 'auth'), function(){
 
     // Complaitns overview
     Route::get('/complaints', array('as' => 'overview', 'uses' => 'ComplaintsController@overviewView'));
+    Route::get('/complaints/user/{hash}', array('as' => 'overviewUser', 'uses' => 'ComplaintsController@filterOverviewByUserHash'));
     Route::post('/complaints', array('as' => 'filterOverview', 'uses' => 'ComplaintsController@filterOverviewAction'));
+
 
 
     //Complaint Single

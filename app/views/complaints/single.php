@@ -1,5 +1,4 @@
 <div class="jumbotron">
-
     <div class="btn-group pull-right">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"<span id="status-button"><?php echo BraveComplaintHelper::$status[$complaint->status]; ?></span> <span class="caret"></span>
             </button>
@@ -21,6 +20,13 @@
 
     <?php if($complaint->anonymous): ?>
         <h3>Complaint #<?php echo $complaint->id; ?> by Anonymous</h3>
+
+        <?php if(Auth::user()->isReviewer(true)): ?>
+            <small class="clearfix pull-right">
+                <?php echo link_to_route('overviewUser','Find all complaints by this user',array('hash' => Hashids::encode($complaint->user_id))); ?>
+            </small>
+        <?php endif; ?>
+
     <?php else: ?>
         <h3>Complaint #<?php echo $complaint->id; ?> by <?php echo ApiUser::find($complaint->user_id)->character_name; ?></h3>
     <?php endif; ?>

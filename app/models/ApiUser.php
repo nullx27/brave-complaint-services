@@ -78,7 +78,13 @@ class ApiUser extends Eloquent implements UserInterface {
         return in_array($permission, $this->_permissions);
     }
 
-    public function isReviewer(){
+    public function isReviewer($is_admin = false){
+        //check if user has all permission else check if he has reviewer rights
+        if($is_admin)
+        {
+            return $this->hasPermission(Config::get('braveapi.permission-review-all'));
+        }
+
         return $this->hasPermission(Config::get('braveapi.application-permission-review'));
     }
 
@@ -112,4 +118,5 @@ class ApiUser extends Eloquent implements UserInterface {
     public function getPermissions(){
         return $this->_permissions;
     }
+
 }

@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"bravecollective/php-api": "dev-master"
+		"bravecollective/php-api": "dev-master",
+	  	"alexsoft/laravel-hashids": "~1.2.0"
 	},
 	"autoload": {
 		"classmap": [
