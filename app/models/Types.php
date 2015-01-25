@@ -57,6 +57,12 @@ class Types implements ArrayAccess, Iterator{
 
     public function getTypesFromPermission(array $permissions)
     {
+        //return all types if user has all permission
+        if(in_array(Config::get('braveapi.permission-review-all'), $permissions) )
+        {
+            return $this->types;
+        }
+
         $out = [];
         foreach($permissions as $permission){
             foreach($this->types as $key => $data){

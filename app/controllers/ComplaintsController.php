@@ -11,7 +11,7 @@ class ComplaintsController extends BaseController {
             $permissions = Auth::user()->getPermissions();
             $types = Types::getTypesFromPermission($permissions);
 
-            if(Auth::user()->canReview('all'))
+            if(Auth::user()->canReview())
             {
                 $complaints = Complaint::orderBy('updated_at', 'desc')->get();
             }
@@ -41,8 +41,8 @@ class ComplaintsController extends BaseController {
 
         if(Auth::user()->isReviewer() && Auth::user()->canReview(Input::get('filter_type'))){
 
-            $permisions = Auth::user()->getPermissions();
-            $types = Types::getTypesFromPermission($permisions);
+            $permissions = Auth::user()->getPermissions();
+            $types = Types::getTypesFromPermission($permissions);
 
             if(!array_key_exists(Input::get('filter_type'), $types)){
                 return Redirect::route('error')->with('flash_error', 'Not allowed!');
