@@ -6,12 +6,9 @@ class ComplaintController extends BaseController {
 
         $complaint = Complaint::find($id);
 
-        if(!$complaint ||
-            (!Auth::user()->isReviewer() ||
-            !Auth::user()->canReview($complaint->type)) ||
-            $complaint->user_id != Auth::user()->id
 
-        ){
+        if(!$complaint->exists || ( !Auth::user()->canReview($complaint->type) && $complaint->user_id != Auth::user()->id ))
+        {
             Session::flash('flash_error', "Complaint #{$id} not found");
             return Redirect::to('error');
         }
