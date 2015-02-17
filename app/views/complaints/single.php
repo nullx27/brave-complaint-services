@@ -23,7 +23,7 @@
 
         <?php if(Auth::user()->isReviewer(true)): ?>
             <small class="clearfix pull-right">
-                <?php echo link_to_route('overviewUser','Find all complaints by this user',array('hash' => Hashids::encode($complaint->user_id))); ?>
+                <?php echo link_to_route('overviewUser','Find all anonymous complaints by this user',array('hash' => Hashids::encode($complaint->user_id))); ?>
             </small>
         <?php endif; ?>
 
