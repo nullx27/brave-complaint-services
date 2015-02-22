@@ -59,7 +59,7 @@
 
     <dl class="dl-horizontal">
         <dt>Description</dt>
-        <dd><?php echo $complaint->desc; ?></dd>
+        <dd><?php echo nl2br($complaint->desc); ?></dd>
     </dl>
 
     <dl class="dl-horizontal">
@@ -140,7 +140,7 @@
 
             <dl class="dl-horizontal">
                 <dt><?php echo $key; ?></dt>
-                <dd><?php echo $val; ?></dd>
+                <dd><?php echo nl2br($val); ?></dd>
             </dl>
 
         <?php endforeach; ?>

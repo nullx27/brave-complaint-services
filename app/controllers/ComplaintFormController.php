@@ -28,10 +28,10 @@ class ComplaintFormController extends BaseController {
         foreach( Input::all() as $key => $val ){
             switch($key) {
             case 'complaint_defendant':
-                $data['defendant'] = $val;
+                $data['defendant'] = e($val);
                 break;
             case 'complaint_desc':
-                $data['desc'] = $val;
+                $data['desc'] = e($val);
                 break;
             case 'complaint_severity':
                 $data['severity'] = intval($val);
@@ -48,7 +48,7 @@ class ComplaintFormController extends BaseController {
                 $data['anonymous'] = ($val == 'user') ?  false : true;
                 break;
             default:
-                $data['data'][$key] = $val;
+                $data['data'][$key] = e($val);
                 break;
             }
         }
