@@ -58,6 +58,11 @@ class ComplaintController extends BaseController {
         }
 
         $complaint->status = Input::get('status');
+	    $complaint->last_reviewer = Auth::user()->id;
+
+	    if($complaint->status != 'new' || $complaint->status != 'inprogress' )
+		    $complaint->important = false;
+
         $complaint->save();
 
         //Add a comment when the status changed
@@ -76,9 +81,11 @@ class ComplaintController extends BaseController {
 
     public function addCommentAction(){
 
+	    $comment = e(Input::get('complaint_comment'));
+
         Message::create(array(
             'complaint_id' => Input::get('complaint_id'),
-            'message' => Input::get('complaint_comment'),
+            'message' => $comment,
             'public' => (Input::get('complaint_comment_private') == 'yes') ? false : true,
             'user_id' => Auth::user()->id,
         ));
@@ -92,6 +99,18 @@ class ComplaintController extends BaseController {
         return Redirect::route('single', array('id' => Input::get('complaint_id')));
     }
 
+	public function updateImportance(){
+		$complaint = Complaint::find(Input::get('id'));
+
+		if(is_null($complaint->important)){
+			$complaint->important = true;
+		} else {
+			$complaint->important = ! $complaint->important;
+		}
+
+		$complaint->save();
+
+	}
 
 
 }

@@ -22,7 +22,7 @@
                 </div>
             <?php endif; ?>
             <div class="panel-body">
-                <?php echo $comment->message; ?>
+                <?php echo nl2br($comment->message); ?>
             </div>
         </div>
 

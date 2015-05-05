@@ -1,4 +1,13 @@
 <div class="jumbotron">
+	<?php if(Auth::user()->isReviewer()):
+		$class = "";
+		if($complaint->important) $class = ' active';
+		?>
+		<div class="pull-right important-button">
+			<a href="#" class="btn btn-danger mark-important <?php echo $class; ?>" role="button">Important</a>
+		</div>
+	<?php endif; ?>
+
     <div class="btn-group pull-right">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"<span id="status-button"><?php echo BraveComplaintHelper::$status[$complaint->status]; ?></span> <span class="caret"></span>
             </button>
@@ -16,6 +25,7 @@
                 </ul>
             <?php endif; ?>
         <?php endif; ?>
+
     </div>
 
     <?php if($complaint->anonymous): ?>

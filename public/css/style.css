@@ -16,3 +16,7 @@ footer .text-muted {
     margin: 20px 0;
     text-align: center;
 }
+
+.important-button {
+    margin-left: 10px;
+}

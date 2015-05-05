@@ -45,7 +45,7 @@ class ComplaintsController extends BaseController {
             $types = Types::getTypesFromPermission($permissions);
 
             if(!array_key_exists(Input::get('filter_type'), $types)){
-                return Redirect::route('error')->with('flash_error', 'Not allowed!');
+                return Redirect::route('overview');
             }
 
             $complaints = Complaint::status(Input::get('filter_status'))

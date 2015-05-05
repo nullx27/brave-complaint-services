@@ -41,12 +41,12 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/complaints/user/{hash}', array('as' => 'overviewUser', 'uses' => 'ComplaintsController@filterOverviewByUserHash'));
     Route::post('/complaints', array('as' => 'filterOverview', 'uses' => 'ComplaintsController@filterOverviewAction'));
 
-
-
     //Complaint Single
     Route::get('/complaint/{id}', array('as' => 'single', 'uses' => 'ComplaintController@singleView'));
     Route::post('/complaint/update', array('as' => 'updateStatus', 'uses' => 'ComplaintController@updateStautsAction'));
+    Route::post('/complaint/important', array('as' => 'markImportant', 'uses' => 'ComplaintController@updateImportance'));
     Route::post('/complaint/comment', array('as' => 'addComment', 'uses' => 'ComplaintController@addCommentAction'));
+
 });
 
 //Error

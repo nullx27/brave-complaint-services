@@ -14,17 +14,47 @@ brave_complaint = {
             cleanElements: "th td"
         });
 
+        $('[data-toggle="popover"]').popover()
+
         //ajax calls
         $('.update-status').on('click', this.update_status_ajax);
         $('.submit-btn-link').on('click', this.update_submit_button);
         $('.submit-btn').on('click', this.submit_form);
         $('.complaint_form').on('submit', this.required_check);
+        $('.mark-important').on('click', this.mark_important);
 
     },
 
     _get_complaint_id: function(){
         var url = window.location.href.split('/');
         return url[url.length -1];
+    },
+
+    mark_important: function(){
+
+        var element = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: '/complaint/important',
+            data: {
+                id: brave_complaint._get_complaint_id()
+            }
+        })
+        .success(function(data){
+                $.jGrowl('Updated Importantce!', {position:'center'});
+                if(element.hasClass('active')) {
+                    element.removeClass('active');
+                } else {
+                    element.addClass('active');
+                }
+            });
+
+        setTimeout(function(){
+            window.location.reload();
+        }, 2000);
+
+        return false;
     },
 
 
@@ -44,7 +74,6 @@ brave_complaint = {
                 $.jGrowl('Something has gone wrong!', {position:'center'});
             })
             .success(function(data){
-                console.log(data);
                 $.jGrowl('Updated Status!', {position:'center'});
 
                 var buttontext;
